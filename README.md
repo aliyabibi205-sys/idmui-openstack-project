@@ -27,4 +27,5 @@ This project runs in a virtual environment:
 5. Run Flask application
 
 
-## Screenshots
+## Note
+This project runs in a virtual environment using Ubuntu and OpenStack, so it cannot be deployed directly online.
