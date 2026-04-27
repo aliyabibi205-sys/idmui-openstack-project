@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Group List{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">👥 Group List</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Group ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Domain ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in groups %}
+                <tr>
+                    <td>{{ group.id }}</td>
+                    <td>{{ group.name }}</td>
+                    <td>{{ group.description or '—' }}</td>
+                    <td>{{ group.domain_id }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

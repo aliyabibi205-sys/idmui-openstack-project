@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center fw-bold">Domains</h2>
+
+    <div class="row">
+        {% if domains %}
+            {% for domain in domains %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ domain.name }}</h5>
+                        <p class="card-text">
+                            <strong>ID:</strong> {{ domain.id }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No domains found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

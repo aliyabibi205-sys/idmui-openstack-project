@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Keystone Service Status{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Keystone Service Status</h1>
+
+    {% if status %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Version Info</h5>
+                <p><strong>Version:</strong> {{ status['version']['id'] }}</p>
+                <p><strong>Status:</strong> 
+                    <span class="badge badge-success text-uppercase">
+                        {{ status['version']['status'] }}
+                    </span>
+                </p>
+                <p><strong>Updated:</strong> {{ status['version']['updated'] }}</p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Links</h5>
+                <ul class="list-group">
+                    {% for link in status['version']['links'] %}
+                        <li class="list-group-item">
+                            <a href="{{ link['href'] }}" target="show status">{{ link['rel'] }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Media Types</h5>
+                <ul class="list-group">
+                    {% for media_type in status['version']['media-types'] %}
+                        <li class="list-group-item">
+                            {{ media_type['base'] }} <span class="text-muted">({{ media_type['type'] }})</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-danger">
+            ❌ Keystone service is currently <strong>offline</strong>. Status information is unavailable.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

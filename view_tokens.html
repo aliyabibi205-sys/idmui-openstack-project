@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Token Information{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">🔑 Active Token Details</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Token ID:</strong> {{ token.id }}</li>
+        <li class="list-group-item"><strong>Issued At:</strong> {{ token.issued_at }}</li>
+        <li class="list-group-item"><strong>Expires At:</strong> {{ token.expires_at }}</li>
+        <li class="list-group-item"><strong>Project:</strong> {{ token.project.name }}</li>
+        <li class="list-group-item"><strong>User:</strong> {{ token.user.name }}</li>
+        <li class="list-group-item"><strong>Roles:</strong>
+            {% for role in token.roles %}
+                <span class="badge bg-primary">{{ role.name }}</span>
+            {% endfor %}
+        </li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center fw-bold">User List</h2>
+
+    <div class="row g-4">
+        {% if users %}
+            {% for user in users %}
+            <div class="col-sm-6 col-md-4">
+                <div class="card shadow-sm h-100 custom-card border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-semibold">
+                            {{ user.name or "Unnamed User" }}
+                        </h5>
+                        <p class="mb-1"><strong>User ID:</strong> {{ user.id[:8] }}...</p>
+
+                        {% if user.email %}
+                        <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+                        {% endif %}
+
+                        <p class="mb-2"><strong>Roles:</strong>
+                            {% if user.roles %}
+                                {% for role in user.roles %}
+                                    <span class="badge bg-primary me-1">{{ role }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-muted">None</span>
+                            {% endif %}
+                        </p>
+
+                        <p class="mb-2"><strong>Projects:</strong>
+                            {% if user.projects %}
+                                {% for proj in user.projects %}
+                                    <span class="badge bg-secondary me-1">{{ proj }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-muted">None</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning text-center">
+                    No users found.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

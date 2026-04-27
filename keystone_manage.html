@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Keystone Service{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Title -->
+            <h1 align=center class="mb-4">Keystone Service Management</h1>
+
+            <!-- Current Status -->
+            <div align = left class="alert alert-{{ 'success' if status == 'active' else 'danger' }} ">
+                <h4 class="alert-heading">Current Status:</h4>
+                <p>
+                    <span class="badge badge-{{ 'success' if status == 'active' else 'danger' }}">
+                        {{ status|capitalize }}
+                    </span>
+                </p>
+            </div>
+
+            <!-- Action Form -->
+            <form align=center method="POST">
+                <div align=center class="btn-group mb-3" role="group">
+                    <button type="submit" name="action" value="start" class="btn btn-success" 
+                            {% if status == 'active' %}disabled{% endif %}>
+                        <i class="bi bi-play-circle me-1"></i> Start
+                    </button>
+                    <button type="submit" name="action" value="stop" class="btn btn-danger"
+                            {% if status == 'inactive' %}disabled{% endif %}>
+                        <i class="bi bi-stop-circle me-1"></i> Stop
+                    </button>
+                    <button type="submit" name="action" value="restart" class="btn btn-warning"
+                            {% if status == 'inactive' %}disabled{% endif %}>
+                        <i class="bi bi-arrow-repeat me-1"></i> Restart
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
